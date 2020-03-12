@@ -1,0 +1,7 @@
+group = rootProject.group
+version = rootProject.version
+
+dependencies{
+    compile "com.asiainfo.bits:bits-core:${bitsVersion}"
+    compile project(":${rootProject.name}-pub")
+}
