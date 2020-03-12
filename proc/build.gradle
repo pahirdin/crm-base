@@ -1,0 +1,10 @@
+group = rootProject.group
+version = rootProject.version
+
+dependencies{
+    compile project(":${rootProject.name}-pub")
+    compile group: 'com.asiainfo', name: 'aischeduler-core', version: '1.0'
+
+    //runtimeOnly project(":${rootProject.name}-svc")
+}
+

@@ -1,0 +1,17 @@
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-username.desc=UserName
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-passwd.desc=Password
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-verifycode.desc=VerifyCode
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-randomcode.desc=RandomCode
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-securpin.desc=SecurPIN
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-username.placeholder=Please Input UserName
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-authtype.placeholder=Please Refresh AuthType
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-passwd.placeholder=Please Input Password
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-verifycode.placeholder=Please Input VerifyCode
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-randomcode.placeholder=Please Input RandomCode
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.ipt-securpin.placeholder=Please Input SecurPIN
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.btn-authtype.text=Next
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.btn-randomcode.text=Get
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.btn-verifycode.text=Refresh
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.btn-fingerprint.text=Fingerprint
+com.asiainfo.crm.sec.web.component.pc.widget.login.form.btn-login.text=LOGIN
+com.asiainfo.crm.sec.web.component.pc.widget.home.banner.ipt-search.placeholder=Please Input To Search

@@ -1,0 +1,12 @@
+rootProject.name = "crm-base"
+
+include(":${rootProject.name}-proc")
+project(":${rootProject.name}-proc").projectDir = "${rootDir}/proc" as File
+include(":${rootProject.name}-pub")
+project(":${rootProject.name}-pub").projectDir = "${rootDir}/pub" as File
+include(":${rootProject.name}-api")
+project(":${rootProject.name}-api").projectDir = "${rootDir}/api" as File
+include(":${rootProject.name}-svc")
+project(":${rootProject.name}-svc").projectDir = "${rootDir}/svc" as File
+include(":${rootProject.name}-web")
+project(":${rootProject.name}-web").projectDir = "${rootDir}/web" as File

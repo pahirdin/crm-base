@@ -1,0 +1,85 @@
+buildscript {
+    ext{
+        pluginRepository = "http://10.13.3.17:18081/repository/maven-thirdparty"
+        bitsVersion = "1.0.0-SNAPSHOT"
+        wadeVersion = "5.5.1-SNAPSHOT"
+        springVersion = "2.1.12.RELEASE"
+    }
+    repositories {
+        mavenLocal()
+        maven { url "${pluginRepository}" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springVersion}")
+    }
+}
+
+def env=System.getProperty("profile") ?:"dev"
+if (env == 'prd') {
+    apply from:"config-prd.gradle"
+} else {
+    apply from:"config-dev.gradle"
+}
+
+group 'com.asiainfo.crm'
+version "1.0.0-SNAPSHOT"
+
+apply plugin: 'idea'
+
+project.configurations.all {
+    resolutionStrategy {
+        // check for updates
+        cacheChangingModulesFor 2, 'minutes'
+    }
+}
+
+subprojects {
+
+    //引入插件
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    compileJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    //发布配置
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "${deployRepository}") {
+                    authentication(userName: "${deployUserName}", password: "${deployPassword}")
+                }
+                pom.groupId = rootProject.group;
+                pom.artifactId = project.name;
+                pom.version = rootProject.version;
+                pom.project {
+                    description 'crm-base'
+                    url 'http://git.wadecn.com:18084/south-china/base.git'
+                }
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "${publicRepository}" }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    //公共依赖
+    dependencies {
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
+        testCompileOnly 'org.projectlombok:lombok:1.18.10'
+    }
+}

@@ -1,0 +1,2 @@
+Thymeleaf模板目录
+用于存放通过SpringBoot Controller处理的Thymeleaf页面模板

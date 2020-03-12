@@ -1,3 +1,2 @@
-# base
-
-业务基础框架
+#CRM基础功能能模块
+##log统一用org.slf4j.Logger;

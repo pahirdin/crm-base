@@ -1,0 +1,71 @@
+group = rootProject.group
+version = rootProject.version
+
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'war'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                name "${project.name}"
+                packaging 'jar'
+                description "${project.name}"
+            }
+            addFilter('jar')
+                    {
+                        artifact, file -> artifact.ext == 'jar'
+                    }
+        }
+    }
+}
+
+bootJar {
+    classifier = 'BOOT'
+    excludeDevtools = true
+}
+
+//bootWar {
+//    excludeDevtools = true
+//    requiresUnpack '**/*tomcat*.jar'
+//}
+
+
+jar {
+    includes = [
+            "META-INF/**",
+            "com/asiainfo/**",
+            "export/**",
+            "import/**",
+            "static/**",
+            "tapestry/**"
+    ]
+
+    excludes = [
+            //"com/asiainfo/crm/*/config/**",
+            "com/asiainfo/crm/*/controller/**",
+            "com/asiainfo/crm/*/*Application.*",
+    ]
+
+    enabled = true
+}
+
+artifacts {
+    archives jar
+}
+
+sourceSets.main.resources {
+    srcDirs = [
+            'src/main/resources',
+            'src/main/java',
+    ]
+}
+
+dependencies {
+
+    compile("com.asiainfo.bits:bits-web-framework:${bitsVersion}")
+    compile("com.asiainfo.bits:bits-web-touchframe:${bitsVersion}")
+    compile "com.asiainfo.bits:bits-csf:${bitsVersion}"
+
+    compile project(":${rootProject.name}-pub")
+}

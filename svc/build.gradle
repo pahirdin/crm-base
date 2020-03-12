@@ -1,0 +1,57 @@
+group = rootProject.group
+version = rootProject.version
+
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'war'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                name "${project.name}"
+                packaging 'jar'
+                description "${project.name}"
+            }
+            addFilter('jar')
+                    {
+                        artifact, file -> artifact.ext == 'jar'
+                    }
+        }
+    }
+}
+
+bootJar {
+    classifier = 'BOOT'
+    excludeDevtools = true
+}
+
+//bootWar {
+//    excludeDevtools = true
+//    requiresUnpack '**/*tomcat*.jar'
+//}
+
+jar {
+    enabled = true
+}
+
+artifacts {
+    archives jar
+}
+
+dependencies {
+
+    // 添加bits的依赖
+    compile "com.asiainfo.bits:bits-csf:${bitsVersion}"
+
+    // 添加oracle数据库依赖
+    compile 'com.oracle.ojdbc:ojdbc8:19.3.0.0'
+    compile 'oracle.i18n:oracle.i18n:1.0'
+
+    compile project(":${rootProject.name}-pub")
+    compile project(":${rootProject.name}-api")
+
+
+    testImplementation 'com.baomidou:mybatis-plus-generator:3.3.0'
+    testImplementation 'org.freemarker:freemarker:2.3.29'
+
+}
