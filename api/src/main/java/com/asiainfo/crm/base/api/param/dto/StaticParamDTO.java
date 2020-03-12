@@ -3,6 +3,7 @@ package com.asiainfo.crm.base.api.param.dto;
 import com.asiainfo.bits.core.data.AbstractDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 静态参数传输对象
@@ -12,6 +13,7 @@ import lombok.Data;
  */
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class StaticParamDTO extends AbstractDTO {
 
     private String typeId;
