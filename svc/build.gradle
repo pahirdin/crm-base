@@ -1,7 +1,7 @@
 group = rootProject.group
 version = rootProject.version
 
-apply plugin: 'org.springframework.boot'
+//apply plugin: 'org.springframework.boot'
 //apply plugin: 'war'
 
 uploadArchives {
@@ -20,10 +20,10 @@ uploadArchives {
     }
 }
 
-bootJar {
-    classifier = 'BOOT'
-    excludeDevtools = true
-}
+//bootJar {
+//    classifier = 'BOOT'
+//    excludeDevtools = true
+//}
 
 //bootWar {
 //    excludeDevtools = true
