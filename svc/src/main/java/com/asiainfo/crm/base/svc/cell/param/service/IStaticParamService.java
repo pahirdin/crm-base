@@ -1,6 +1,6 @@
-package com.asiainfo.crm.base.svc.param.cell.service;
+package com.asiainfo.crm.base.svc.cell.param.service;
 
-import com.asiainfo.crm.base.api.param.dto.StaticParamDTO;
+import com.asiainfo.bits.core.data.param.StaticParamDTO;
 
 import java.util.List;
 

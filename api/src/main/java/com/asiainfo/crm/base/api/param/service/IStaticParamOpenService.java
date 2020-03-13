@@ -1,7 +1,7 @@
 package com.asiainfo.crm.base.api.param.service;
 
 
-import com.asiainfo.crm.base.api.param.dto.StaticParamDTO;
+import com.asiainfo.bits.core.data.param.StaticParamDTO;
 
 import java.util.List;
 

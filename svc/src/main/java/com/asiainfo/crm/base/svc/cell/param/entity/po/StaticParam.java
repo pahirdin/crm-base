@@ -1,4 +1,4 @@
-package com.asiainfo.crm.base.svc.param.cell.entity.po;
+package com.asiainfo.crm.base.svc.cell.param.entity.po;
 
 import com.asiainfo.bits.core.data.BaseEntity;
 import com.baomidou.mybatisplus.annotation.IdType;

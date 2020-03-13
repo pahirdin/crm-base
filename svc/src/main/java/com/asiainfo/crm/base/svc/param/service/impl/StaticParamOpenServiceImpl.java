@@ -1,8 +1,8 @@
 package com.asiainfo.crm.base.svc.param.service.impl;
 
-import com.asiainfo.crm.base.api.param.dto.StaticParamDTO;
+import com.asiainfo.bits.core.data.param.StaticParamDTO;
 import com.asiainfo.crm.base.api.param.service.IStaticParamOpenService;
-import com.asiainfo.crm.base.svc.param.cell.service.IStaticParamService;
+import com.asiainfo.crm.base.svc.cell.param.service.IStaticParamService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

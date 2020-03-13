@@ -1,9 +1,9 @@
-package com.asiainfo.crm.base.svc.param.cell.mapper;
+package com.asiainfo.crm.base.svc.cell.param.mapper;
 
 import com.asiainfo.bits.skeleton.database.DataSourceKey;
 import com.asiainfo.bits.skeleton.database.annotation.DataSource;
 import com.asiainfo.bits.skeleton.database.annotation.Storage;
-import com.asiainfo.crm.base.svc.param.cell.entity.po.StaticParam;
+import com.asiainfo.crm.base.svc.cell.param.entity.po.StaticParam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

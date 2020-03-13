@@ -1,12 +1,12 @@
-package com.asiainfo.crm.base.svc.param.cell.service.impl;
+package com.asiainfo.crm.base.svc.cell.param.service.impl;
 
+import com.asiainfo.bits.core.data.param.StaticParamDTO;
 import com.asiainfo.bits.core.util.ArrayUtils;
 import com.asiainfo.bits.skeleton.database.DataSourceKey;
 import com.asiainfo.bits.skeleton.database.annotation.DataSource;
-import com.asiainfo.crm.base.api.param.dto.StaticParamDTO;
-import com.asiainfo.crm.base.svc.param.cell.entity.po.StaticParam;
-import com.asiainfo.crm.base.svc.param.cell.mapper.StaticParamMapper;
-import com.asiainfo.crm.base.svc.param.cell.service.IStaticParamService;
+import com.asiainfo.crm.base.svc.cell.param.mapper.StaticParamMapper;
+import com.asiainfo.crm.base.svc.cell.param.service.IStaticParamService;
+import com.asiainfo.crm.base.svc.cell.param.entity.po.StaticParam;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
