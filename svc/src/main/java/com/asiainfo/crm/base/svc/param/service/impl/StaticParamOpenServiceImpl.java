@@ -25,7 +25,6 @@ public class StaticParamOpenServiceImpl implements IStaticParamOpenService {
 
     @Override
     public List<StaticParamDTO> queryParams(StaticParamDTO request) {
-        log.debug("request {}", request);
         return service.queryParams(request);
     }
 }
