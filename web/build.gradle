@@ -68,4 +68,5 @@ dependencies {
     compile "com.asiainfo.bits:bits-csf:${bitsVersion}"
 
     compile project(":${rootProject.name}-pub")
+    compile project(":${rootProject.name}-api")
 }
