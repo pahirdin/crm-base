@@ -1,7 +1,7 @@
 package com.asiainfo.crm.base.svc.cell.param.service.impl;
 
 import com.asiainfo.bits.core.data.param.StaticParamDTO;
-import com.asiainfo.bits.core.util.ArrayUtils;
+import com.asiainfo.bits.core.util.CopyUtils;
 import com.asiainfo.bits.skeleton.database.DataSourceKey;
 import com.asiainfo.bits.skeleton.database.annotation.DataSource;
 import com.asiainfo.crm.base.svc.cell.param.mapper.StaticParamMapper;
@@ -28,7 +28,7 @@ public class StaticParamServiceImpl extends ServiceImpl<StaticParamMapper, Stati
 
     @Override
     public List<StaticParamDTO> queryParams(StaticParamDTO staticDataDTO) {
-        return ArrayUtils.copyPropertiesList(list(Wrappers.<StaticParam>lambdaQuery()
+        return CopyUtils.copyList(list(Wrappers.<StaticParam>lambdaQuery()
                 .eq(StaticParam::getTypeId, staticDataDTO.getTypeId())
                 .eq(StaticParam::getValidFlag, "1")
                 .eq(StringUtils.isNotBlank(staticDataDTO.getDataId()), StaticParam::getDataId, staticDataDTO.getDataId())
