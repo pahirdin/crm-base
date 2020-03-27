@@ -4,6 +4,7 @@ buildscript {
         bitsVersion = "1.0.0-SNAPSHOT"
         wadeVersion = "5.5.1-SNAPSHOT"
         springVersion = "2.1.12.RELEASE"
+        distDir = System.getProperty("distDir")
     }
     repositories {
         mavenLocal()
@@ -47,6 +48,7 @@ subprojects {
     compileJava {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+        options.compilerArgs << '-parameters'
     }
 
     //发布配置
@@ -72,9 +74,25 @@ subprojects {
         maven { url "${publicRepository}" }
     }
 
+    task releaseJar(type: Copy){
+        if( null == distDir || "".equals(distDir.trim()) ){
+            return;
+        }
+        from 'build/libs'
+        into "${distDir}/jars"
+        exclude "*-BOOT.jar"
+    }
+
+    jar.finalizedBy("releaseJar")
+
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
     }
+
+    configurations {
+        all*.exclude group: "log4j", module: "log4j"   //传递依赖引入的log4j-1.2.16存在bug，且应用必须统一使用slf4j
+    }
+
     //公共依赖
     dependencies {
         annotationProcessor 'org.projectlombok:lombok:1.18.10'
