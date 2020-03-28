@@ -102,13 +102,6 @@ subprojects {
         options.encoding = "UTF-8"
     }
 
-    configurations {
-        //传递依赖引入的log4j-1.2.16存在bug，且应用必须统一使用slf4j
-        implementation.exclude group: "log4j", module: "log4j"
-        compile.exclude group: "log4j", module: "log4j"
-        testCompile.exclude group: "log4j", module: "log4j"
-    }
-
     //公共依赖
     dependencies {
         runtimeOnly "log4j:log4j"
