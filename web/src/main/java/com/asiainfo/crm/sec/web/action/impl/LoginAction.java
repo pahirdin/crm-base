@@ -15,7 +15,7 @@ import com.asiainfo.bits.web.framework.Constants;
 import com.asiainfo.bits.web.framework.Visit;
 import com.asiainfo.bits.web.touchframe.action.ILoginAction;
 import com.asiainfo.crm.sec.web.config.LoginProperties;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

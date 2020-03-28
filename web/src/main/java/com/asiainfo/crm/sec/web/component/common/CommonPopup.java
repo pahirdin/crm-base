@@ -4,7 +4,7 @@ import com.ailk.common.data.IData;
 import com.ailk.common.data.impl.DataMap;
 import com.ailk.web.BaseComponent;
 import com.ailk.web.util.BaseUtil;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tapestry.*;
 
 public abstract class CommonPopup extends BaseComponent {

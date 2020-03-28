@@ -1,7 +1,7 @@
 package com.asiainfo.crm.sec.web.component.common;
 
 import com.ailk.web.BaseComponent;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tapestry.ApplicationRuntimeException;
 import org.apache.tapestry.IMarkupWriter;
 import org.apache.tapestry.IRequestCycle;

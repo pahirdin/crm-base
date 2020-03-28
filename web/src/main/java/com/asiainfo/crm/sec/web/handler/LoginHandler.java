@@ -8,7 +8,7 @@ import com.asiainfo.bits.web.framework.HttpHandler;
 import com.asiainfo.crm.sec.web.config.LoginProperties;
 import com.wade.web.bind.annotation.PostRequest;
 import net.sf.json.JSONObject;
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

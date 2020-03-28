@@ -7,7 +7,7 @@ import com.ailk.web.view.safe.IPrivChecker;
 import com.asiainfo.bits.web.framework.Visit;
 import com.asiainfo.crm.sec.web.cache.PagePrivCache;
 import com.asiainfo.crm.sec.web.cache.PagePrivCache;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

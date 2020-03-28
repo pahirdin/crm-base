@@ -3,7 +3,7 @@ package com.asiainfo.crm.sec.web.handler;
 import com.asiainfo.bits.web.framework.HttpHandler;
 import com.asiainfo.bits.web.framework.Visit;
 import net.sf.json.JSONArray;
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

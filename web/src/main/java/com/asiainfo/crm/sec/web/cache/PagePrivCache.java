@@ -3,7 +3,7 @@ package com.asiainfo.crm.sec.web.cache;
 import com.ailk.cache.localcache.AbstractReadOnlyCache;
 import com.asiainfo.crm.sec.web.privchecker.data.ParamMap;
 import com.asiainfo.crm.sec.web.privchecker.data.ParamRightMap;
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
