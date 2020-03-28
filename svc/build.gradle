@@ -1,3 +1,12 @@
+/*
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springVersion}")
+    }
+}
+
+ */
+
 group = rootProject.group
 version = rootProject.version
 
@@ -38,6 +47,15 @@ artifacts {
     archives jar
 }
 
+/**
+ * dependencyManagement 只能放在各子工程构建简本里，不能放在rootProject的subproject里，否则会出现jar包版本处理不正确的情况
+ */
+dependencyManagement {
+    imports {
+        mavenBom "com.asiainfo.bits:bits-parent:${bitsVersion}"
+    }
+}
+
 dependencies {
 
     // 添加bits的依赖
@@ -45,14 +63,14 @@ dependencies {
     compile "com.asiainfo.bits:bits-skeleton:${bitsVersion}"
 
     // 添加oracle数据库依赖
-    compile 'com.oracle.ojdbc:ojdbc8:19.3.0.0'
-    compile 'oracle.i18n:oracle.i18n:1.0'
+    compile 'com.oracle.ojdbc:ojdbc8'
+    compile 'oracle.i18n:oracle.i18n'
 
     compile project(":${rootProject.name}-pub")
     compile project(":${rootProject.name}-api")
 
 
-    testImplementation 'com.baomidou:mybatis-plus-generator:3.3.0'
-    testImplementation 'org.freemarker:freemarker:2.3.29'
+    testImplementation 'com.baomidou:mybatis-plus-generator'
+    testImplementation 'org.freemarker:freemarker'
 
 }
