@@ -14,11 +14,11 @@ uploadArchives {
 }
 
 /**
- * dependencyManagement 只能放在各子工程构建简本里，不能放在rootProject的subproject里，否则会出现jar包版本处理不正确的情况
+ * dependencyManagement 只能放在各子工程构建脚本里，不能放在rootProject的subproject里，否则会出现jar包版本处理不正确的情况
  */
 dependencyManagement {
     imports {
-        mavenBom "com.asiainfo.bits:bits-parent:${bitsVersion}"
+        mavenBom "com.asiainfo.bits:bits-dependencies:${bitsVersion}"
     }
 }
 
