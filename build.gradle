@@ -12,7 +12,7 @@ buildscript {
     }
     dependencies {
         classpath("io.freefair.gradle:lombok-plugin:4.1.6")
-        classpath("io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE");
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE");
     }
 }
 
@@ -44,16 +44,70 @@ subprojects {
         }
         dependencies {
             classpath("io.freefair.gradle:lombok-plugin:4.1.6")
-            classpath("io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE");
+            classpath("io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE");
         }
     }
-    
+
     //引入插件
-    apply plugin: 'java'
-    apply plugin: 'maven'
     apply plugin: 'idea'
-    apply plugin: "io.freefair.lombok"
+    apply plugin: 'maven-publish'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: "io.freefair.lombok"
+    apply plugin: 'java'
+
+    repositories {
+        mavenLocal()
+        maven { url "${publicRepository}" }
+    }
+
+    //发布配置
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                //artifact sourcesJar
+                //artifact javadocJar
+
+                versionMapping {
+                    usage('java-api') {
+                        fromResolutionOf('runtimeClasspath')
+                    }
+                    usage('java-runtime') {
+                        fromResolutionResult()
+                    }
+                }
+                pom {
+                    groupId rootProject.group
+                    artifactId project.name
+                    version rootProject.version
+                    name = project.name
+                    description = project.name
+                    url = 'http://git.wadecn.com:18084/south-china/base'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:http://git.wadecn.com:18084/south-china/base'
+                        developerConnection = 'scm:git:http://git.wadecn.com:18084/south-china/base.git'
+                        url = 'http://git.wadecn.com:18084/south-china/base'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                name "ZdMavenDev"
+                url "http://10.13.3.17:18081/repository/maven-dev/"
+                credentials {
+                    username "dev"
+                    password '1q1w1e1r'
+                }
+            }
+        }
+    }
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -62,29 +116,6 @@ subprojects {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
         options.compilerArgs << '-parameters'
-    }
-
-    //发布配置
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "${deployRepository}") {
-                    authentication(userName: "${deployUserName}", password: "${deployPassword}")
-                }
-                pom.groupId = rootProject.group;
-                pom.artifactId = project.name;
-                pom.version = rootProject.version;
-                pom.project {
-                    description 'crm-base'
-                    url 'http://git.wadecn.com:18084/south-china/base.git'
-                }
-            }
-        }
-    }
-
-    repositories {
-        mavenLocal()
-        maven { url "${publicRepository}" }
     }
 
     task releaseJar(type: Copy){
@@ -101,6 +132,11 @@ subprojects {
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
     }
+
+    /**
+     * 构建时跳过test
+     */
+    test.onlyIf { "true".equals(System.getProperty("widthTest")) }
 
     //公共依赖
     dependencies {

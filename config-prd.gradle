@@ -1,6 +1,4 @@
 ext {
     publicRepository = "http://10.13.3.16:18081/repository/maven-public-prod/"
     deployRepository = "http://10.13.3.16:18081/repository/maven-prod/"
-    deployUserName = "prod"
-    deployPassword = "1q1w1e1r"
 }

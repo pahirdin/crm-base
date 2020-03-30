@@ -1,18 +1,6 @@
 group = rootProject.group
 version = rootProject.version
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            pom.project {
-                name "${project.name}"
-                packaging 'jar'
-                description "${project.name}"
-            }
-        }
-    }
-}
-
 /**
  * dependencyManagement 只能放在各子工程构建脚本里，不能放在rootProject的subproject里，否则会出现jar包版本处理不正确的情况
  */
