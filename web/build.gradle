@@ -1,21 +1,48 @@
-/*
 buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springVersion}")
     }
 }
- */
 
 group = rootProject.group
 version = rootProject.version
 
-//apply plugin: 'org.springframework.boot'
+apply plugin: 'org.springframework.boot'
 //apply plugin: 'war'
 
-//bootJar {
-//    classifier = 'BOOT'
-//    excludeDevtools = true
-//}
+task releaseBootJar(type: Copy){
+    if( null == distDir || "".equals(distDir.trim()) ){
+        return;
+    }
+    from 'build/libs'
+    into "${distDir}/tars"
+    include "*-BOOT.jar"
+}
+
+processResources {
+    if( null == runtimeConfigDir || "".equals(runtimeConfigDir.trim()) ){
+        return;
+    }
+    from "${runtimeConfigDir}/web/${rootProject.name.replace("crm-", "")}/config"
+    //生成release.txt
+    File file = file("${temporaryDir}/release.txt");
+    file.text = "number=" + new Date().format("yyMMddHHmmss");
+    from file;
+}
+
+bootJar {
+    classifier = 'BOOT'
+    excludeDevtools = true
+
+    bootInf {
+        from "${distDir}/jars"
+        into "lib"
+        includes = ['*-pub-*.jar', '*-web-*.jar']
+        excludes = ["*-BOOT.jar", "${rootProject.name}-*.jar"]
+    }
+
+    finalizedBy("releaseBootJar")
+}
 
 //bootWar {
 //    excludeDevtools = true
@@ -30,13 +57,14 @@ jar {
             "export/**",
             "import/**",
             "static/**",
-            "tapestry/**"
+            "tapestry/**",
+            "i18n.*"
     ]
 
     excludes = [
-            //"com/asiainfo/crm/*/config/**",
-            "com/asiainfo/crm/*/controller/**",
-            "com/asiainfo/crm/*/*Application.*",
+            //"com/asiainfo/crm/*/web/config/**",
+            "com/asiainfo/crm/*/web/controller/**",
+            "com/asiainfo/crm/*/web/WebApplication.*",
     ]
 
     enabled = true
