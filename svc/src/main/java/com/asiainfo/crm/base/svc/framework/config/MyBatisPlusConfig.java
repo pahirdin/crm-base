@@ -85,7 +85,6 @@ public class MyBatisPlusConfig {
     public MySqlSessionTemplate customSqlSessionTemplate() throws Exception {
         Map<String, SqlSessionFactory> sqlSessionFactoryMap = new HashMap<String, SqlSessionFactory>(3) {{
             put("base", createSqlSessionFactory(baseDataSource()));
-            put("cp", createSqlSessionFactory(cpDataSource()));
         }};
         MySqlSessionTemplate sqlSessionTemplate = new MySqlSessionTemplate(sqlSessionFactoryMap.get(DataSourceKey.BASE));
         sqlSessionTemplate.setTargetSqlSessionFactories(sqlSessionFactoryMap);
