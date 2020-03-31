@@ -28,7 +28,7 @@ import java.util.Map;
         exclude = {MybatisPlusAutoConfiguration.class},
         scanBasePackages = {"com.asiainfo.crm.base", "com.asiainfo.bits"}
 )
-@EnableService(basePackages = "com.asiainfo.crm.upc.api.business", api = "/api/base", enabledController = true, enabledProxy = false)
+@EnableService(basePackages = "com.asiainfo.crm.base.api", api = "/api/base", enabledController = true, enabledProxy = false)
 public class Application {
 
     private static transient final String APRP_ROTOCOL = "org.apache.coyote.http11.Http11AprProtocol";
