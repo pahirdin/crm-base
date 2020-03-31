@@ -2,3 +2,6 @@ ext {
     publicRepository = "http://10.13.3.17:18081/repository/maven-public-dev/"
     deployRepository = "http://10.13.3.17:18081/repository/maven-dev/"
 }
+
+group 'com.asiainfo.crm'
+version "1.0.0-QHAI-SNAPSHOT"

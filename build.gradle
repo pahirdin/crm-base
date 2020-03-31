@@ -24,9 +24,6 @@ if (env == 'prd') {
     apply from:"config-dev.gradle"
 }
 
-group 'com.asiainfo.crm'
-version "1.0.0-SNAPSHOT"
-
 apply plugin: 'idea'
 
 project.configurations.all {
