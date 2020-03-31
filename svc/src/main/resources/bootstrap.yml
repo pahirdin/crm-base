@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: crm-base
+  cloud:
+    inetutils:
+      preferred-networks: 10.13
+    nacos:
+      discovery:
+        server-addr: 10.13.3.13:8848
+        cluster-name: for-web
