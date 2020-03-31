@@ -4,6 +4,7 @@ buildscript {
         bitsVersion = "1.0.0-SNAPSHOT"
         wadeVersion = "5.5.1-SNAPSHOT"
         springVersion = "2.1.12.RELEASE"
+        runtimeConfigDir = System.getProperty("runtimeConfigDir")
         distDir = System.getProperty("distDir")
     }
     repositories {

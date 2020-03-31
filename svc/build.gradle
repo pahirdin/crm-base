@@ -4,32 +4,48 @@ buildscript {
     }
 }
 
-
 group = rootProject.group
 version = rootProject.version
 
 apply plugin: 'org.springframework.boot'
 //apply plugin: 'war'
 
-jar {
-    includes = [
-            "META-INF/**",
-            "com/asiainfo/**",
-            "mapper/**"
-    ]
+task releaseBootJar(type: Copy){
+    if( null == distDir || "".equals(distDir.trim()) ){
+        return;
+    }
+    from 'build/libs'
+    into "${distDir}/tars"
+    include "*-BOOT.jar"
+}
 
-    excludes = [
-            //"com/asiainfo/crm/*/config/**",
-            "com/asiainfo/crm/*/svc/framework/config/MyBatisPlusConfig.*",
-            "com/asiainfo/crm/*/svc/Application.*",
-    ]
-
-    enabled = true
+processResources {
+    if( null == runtimeConfigDir || "".equals(runtimeConfigDir.trim()) ){
+        return;
+    }
+    from "${runtimeConfigDir}/svc/${rootProject.name.replace("crm-", "")}/config"
+    /*
+    //生成release.txt
+    File file = file("${temporaryDir}/release.txt");
+    file.text = "number=" + new Date().format("yyMMddHHmmss");
+    from file;
+    */
 }
 
 bootJar {
     classifier = 'BOOT'
     excludeDevtools = true
+
+    /*
+    bootInf {
+        from "${distDir}/jars"
+        into "lib"
+        includes = ['*-pub-*.jar', '*-api-*.jar']
+        excludes = ["*-BOOT.jar", "${rootProject.name}-*.jar"]
+    }
+    */
+
+    finalizedBy("releaseBootJar")
 }
 
 //bootWar {
@@ -53,6 +69,7 @@ dependencyManagement {
         mavenBom "com.asiainfo.bits:bits-dependencies:${bitsVersion}"
     }
 }
+
 
 dependencies {
 
