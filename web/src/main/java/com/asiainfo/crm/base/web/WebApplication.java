@@ -1,5 +1,6 @@
 package com.asiainfo.crm.base.web;
 
+import com.asiainfo.bits.csf.annotation.EnableService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,7 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.asiainfo.crm.base", "com.asiainfo.bits", "com.wade.springboot"})
+@ComponentScan(basePackages = {"com.asiainfo.crm.base.web", "com.asiainfo.crm.base.api", "com.asiainfo.bits", "com.wade.springboot"})
+@EnableService(basePackages = {"com.asiainfo.crm.base.api"})
 public class WebApplication extends SpringBootServletInitializer {
 
     /**
@@ -32,13 +34,10 @@ public class WebApplication extends SpringBootServletInitializer {
 
     @Bean("com.asiainfo.order.web.webServerFactoryCustomizer")
     public WebServerFactoryCustomizer webServerFactoryCustomizer(){
-        return new WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>() {
-            @Override
-            public void customize(ConfigurableServletWebServerFactory factory) {
-                MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
-                mappings.add("txt", "application/octet-stream; charset=utf-8");
-                factory.setMimeMappings(mappings);
-            }
+        return (WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>) factory -> {
+            MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
+            mappings.add("txt", "application/octet-stream; charset=utf-8");
+            factory.setMimeMappings(mappings);
         };
     }
 

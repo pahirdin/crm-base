@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Csf>
+    <Common>
+        <ProcInfo>
+            <!-- 1、中心集成定义(当前有哪些中心的代码是部署在一起的,以分号分割，比如order;product; 2、对于前后端分离/融合中心，前端的该文件都配置为force@remote -->
+            <centers>
+                <center>base</center>
+            </centers>
+        </ProcInfo>
+        <NameServer:zk>
+            <!-- 多个地址用逗号(,)隔开10.1.130.138:21888 -->
+            <Item name="server.list" value="127.0.0.1:2181"/>
+
+            <!-- 连接超时时间，默认4000ms -->
+            <Item name="connection.timeout" value="4000"/>
+
+            <!-- Session超时时间，默认40000ms -->
+            <Item name="session.timeout" value="40000"/>
+
+            <!-- 连接断开重试次数，默认5次 -->
+            <Item name="retry.times" value="5"/>
+
+            <!-- 重试时间间隔，默认1000ms -->
+            <Item name="retry.sleep.ms" value="1000"/>
+
+        </NameServer:zk>
+    </Common>
+
+
+    <Server>
+        <!-- 服务地址注册器模块，职责：注册地址到nameserver -->
+        <Registry:zk>
+            <Mapping>
+                <center name="ams">
+                    <clusters>
+                        <cluster name="defaultCluster">
+                            <group name="example">
+                                <app id="csf-example-srv"/>
+                            </group>
+                        </cluster>
+                    </clusters>
+                </center>
+            </Mapping>
+        </Registry:zk>
+        <!-- <Protocol:remote /> -->
+        <!--<Protocol:sockcet port="38888" />-->
+
+        <Protocol:http port="38888"/>
+        <!-- 过滤器模块，职责：参数映射过滤器，业务自定义过滤器绑定到过滤器链中 -->
+        <Filter>
+            <!--#入参、出参为固定类型、单个的时候使用该过滤器com.ai.aif.csf.executor.request.filter.params.mapping.SingleMapParamMappingFilter
+                        #支持pojo转化的过滤器:com.ai.aif.csf.executor.request.filter.params.mapping.ParamsMappingFilter
+                        #透传的参数过滤器:com.ai.aif.csf.executor.request.filter.params.mapping.TransportParamsMappingFilter
+                        #服务描述文件过滤器:com.ai.aif.csf.executor.request.filter.params.mapping.MetaParamsMappingFilter-->
+            <ParamMapping>
+                <impl>com.ai.aif.csf.executor.request.filter.params.mapping.TransportParamsMappingFilter</impl>
+            </ParamMapping>
+            <Custom:local>
+                <impl>com.asiainfo.order.soa.pub.request.filter.CSVFilter</impl>
+                <impl>com.asiainfo.order.soa.pub.request.filter.PreCSVFilter</impl>
+            </Custom:local>
+            <Custom:remote>
+                <impl>com.asiainfo.areca.aif.csf.executor.request.filter.I18NFilter</impl>
+                <impl>com.asiainfo.areca.aif.csf.context.BusinessContextFilter</impl>
+                <impl>com.asiainfo.order.soa.pub.request.filter.CSVFilter</impl>
+                <impl>com.asiainfo.order.soa.pub.request.filter.PreCSVFilter</impl>
+                <impl>com.asiainfo.areca.soa.filter.fuzzy.FuzzyDataFilter</impl>
+            </Custom:remote>
+        </Filter>
+
+
+        <!--默认采用com.ai.aif.csf.common.exception.handler.DefaultServerExceptionHandler-->
+        <Item name="server.exception.handler">
+            <value></value>
+        </Item>
+
+        <Exporter:zookeeper/>
+
+        <Control>
+            <Item name="first.local.invoke.need.new.thread" value="true"/>
+        </Control>
+    </Server>
+
+    <Client>
+        <Extention>
+            <!--
+            客户端获取服务信息的方式 从服务路由器获取配置为
+                com.ai.aif.csf.client.service.info.fetcher.FetchServiceInfoFromServiceRouter
+            从jvm缓存中获取（通常在开发的时候使用，这样服务路由器可以对开发透明）
+                com.ai.aif.csf.module.fetcher.appframe.cache.FetchServiceInfoFromDBCache
+            直连方式配置
+                com.ai.aif.csf.client.service.info.fetcher.FetchDirectServiceInfo
+            -->
+            <Item name="serviceinfo.fetcher">
+                <value>com.ai.aif.csf.client.service.info.fetcher.FetchDirectServiceInfo</value>
+            </Item>
+
+            <!-- 1、该配置开放对业务异常的处理，可以对异常进行收缩（广西）或其他处理; 2、框架默认实现，直接将此类异常抛出，不做处理 3、广西异常收缩实现类com.ai.aif.csf.platform.exception.filter.ExceptionShrinkFilter -->
+            <Item name="exception.handler">
+                <value></value>
+            </Item>
+
+            <!-- 客户端扩展，可以扩展是否携带用户信息，是否根据regionid路由 默认不携带appframe相关的对象 -->
+            <Item name="client.extend">
+                <value>com.asiainfo.areca.aif.csf.client.extend.BusinessClientExtend</value>
+            </Item>
+
+            <!--
+                1、客户端代理，默认为com.ai.aif.csf.client.service.stub.ClientStub
+                2、如果不使用csf客户端，而使用hsf客户端，请配置com.ai.aif.csf.client.hsf.stub.HsfStub
+                3、此处配置的实现类需要继承AbstractStub
+            -->
+            <Item name="client.stub">
+                <value>com.ai.aif.csf.client.service.stub.ClientStub</value>
+            </Item>
+        </Extention>
+        <Control>
+            <!-- 客户端集群策略（重试策略）：重试N次,括号中为0或负数不重试 -->
+            <Item name="retry.policy" value="RetryNTimes(0)"/>
+
+            <!-- 客户端默认连接创建时间，毫秒为单位；必须配置，不配置报错 -->
+            <Item name="default.connection.timeout" value="1000"/>
+
+            <!-- 客户端默认socket不活动最大时间，毫秒为单位；必须配置，不配置报错 -->
+            <Item name="default.socket.timeout" value="93000"/>
+
+            <!-- 客户端负载均衡策略
+            <Item name="host.lbs" value="round" />-->
+
+            <!-- 客户端是否需要注册 -->
+            <Item name="registry.enable" value="false"/>
+
+            <!-- 是否全局将服务协议替换成socket -->
+            <Item name="replace.remote.with.socket" value="false"/>
+        </Control>
+
+        <CircuitBreaker>
+            <!-- 熔断器开关 -->
+            <Item name="enable" value="false"/>
+
+            <!-- 主机熔断时间窗口内请求失败率 -->
+            <Item name="host.error.threshold.percentage" value="80"/>
+
+            <!-- 服务熔断时间窗口请求失败率 -->
+            <Item name="service.error.threshold.percentage" value="80"/>
+
+            <!-- 熔断器统计时间窗口 -->
+            <Item name="statistics.window" value="10000"/>
+
+            <!-- 时间窗口内触发熔断请求次数开关 -->
+            <Item name="request.volume.threshold" value="30"/>
+
+            <!-- 是否开启线程池隔离模式 -->
+            <Item name="thread.isolation.enable" value="true"/>
+        </CircuitBreaker>
+
+        <!-- 安全停机，职责：客户端安全停机 -->
+        <SafeShutdown>
+            <!-- 安全停机超时时间配置 -->
+            <timeout></timeout>
+            <!-- 安全停机实现执行类 -->
+            <custom></custom>
+        </SafeShutdown>
+
+        <!-- 预热模块，职责：帮助业务实现预热 -->
+        <Warm>
+            <!-- 1、预热拦截器，做预热前、预热后、预热失败的处理 以分号;分割 2、实现接口com.ai.aif.csf.api.common.warmup.IWarmupInterceptor -->
+            <Item name="warm.interceptor" value=""/>
+
+            <!-- 1、预热实现类,以分号;分割 2、com.ai.aif.csf.api.common.warmup.IWarmUpper -->
+            <Item name="warm.upper" value=""/>
+        </Warm>
+    </Client>
+</Csf>
