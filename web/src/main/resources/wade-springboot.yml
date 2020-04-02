@@ -1,0 +1,51 @@
+filter:
+  sso:
+    name: sso
+    servletNames: base
+    #urlPatterns: /examples/*,/data/*,/order,/handler,/attach,/impexp
+    order: 2
+    enabled: false
+  sna:
+    name: sna
+    servletNames: handler,attach,impexp,base
+    #urlPatterns: /examples/*,/data/*,/order,/handler,/attach,/impexp
+    order: 3
+    enabled: false
+  security:
+    name: security
+    servletNames: handler,attach,impexp,base
+    #urlPatterns: /examples/*,/data/*,/order,/handler,/attach,/impexp
+    initParameters.xss-use-default-rules: true
+    initParameters.xss-external-rules: |
+      \( &#40;
+      \) &#41;
+      ' &#39;
+      document\. antixss 2
+    initParameters.x-frame-options: SAMEORIGIN
+    initParameters.sign-match: \/base\?service=ajax
+    #initParameters.sign-timeout: 3
+    order: 4
+    enabled: true
+
+servlet:
+  page:
+    name: base
+    urlMappings: /base,/preload
+    order: 3
+    enabled: true
+    default: true
+  handler:
+    name: handler
+    urlMappings: /handler
+    order: 4
+    enabled: true
+  attach:
+    name: attach
+    urlMappings: /attach
+    order: 5
+    enabled: true
+  impexp:
+    name: impexp
+    urlMappings: /impexp
+    order: 6
+    enabled: true

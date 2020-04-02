@@ -1,0 +1,24 @@
+
+server:
+  servlet:
+    context-path: /web-base
+  port: 8001
+
+# \u65E5\u5FD7
+logging:
+  level:
+    root: info
+    com.baomidou.mybatisplus: info
+    com.asiainfo.crm: debug
+    com.wade: debug
+    com.ailk: debug
+    com.asiainfo.bits: debug
+    com.ai.aif.csf: info
+    com.ailk.common.config: info
+    com.wade.web.lang.Lang: info
+    com.ailk.web.view.component.AbstractComponent: info
+
+spring:
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5

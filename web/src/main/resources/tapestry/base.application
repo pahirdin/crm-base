@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC
+        "-//Apache Software Foundation//Tapestry Specification 3.0//EN"
+        "http://jakarta.apache.org/tapestry/dtd/Tapestry_3_0.dtd"[
+        <!ENTITY touchframe-page  SYSTEM "classpath:/tapestry/touchframe-page.application">
+        <!ENTITY bits-page  SYSTEM "classpath:/tapestry/bits-page.application">
+        <!ENTITY base-page  SYSTEM "base-page.application">
+        ]>
+<application name="base" engine-class="com.wade.web.v5.tapestry.engine.BaseEngine">
+    <description>web-upc</description>
+
+    <property name="org.apache.tapestry.disable-caching" value="true"/>
+    <property name="org.apache.tapestry.enable-reset-service" value="true"/>
+    <property name="org.apache.tapestry.template-encoding" value="UTF-8"/>
+    <property name="org.apache.tapestry.output-encoding" value="UTF-8"/>
+    <property name="org.apache.tapestry.page-login" value="Home"/>
+    <property name="org.apache.tapestry.page-exception" value="Exception"/>
+    <property name="org.apache.tapestry.visit-class">com.asiainfo.bits.web.framework.Visit</property>
+
+    &touchframe-page;
+    &bits-page;
+
+    &base-page;
+
+    <library id="bits" specification-path="/com/asiainfo/bits/web/framework/component/bits.library" />
+
+</application>

@@ -1,0 +1,602 @@
+filter.sessionVerify:
+  name: sessionVerify
+  servletNames: handler,attach,impexp,base
+  initParameters.exclude-clazz: com.asiainfo.crm.sec.web.handler.LoginHandler
+  #urlPatterns: /examples/*,/data/*,/order,/handler,/attach,/impexp
+  order: 5
+  enabled: true
+
+project.css: cm
+project.js: cm
+
+touchframe.debug: true
+touchframe.pc.login:
+  title: "青海移动 CRM"
+  logoTitle: "青海移动 CRM"
+  usernameField: LOGIN_CODE
+  usernameValue: 90070001
+  passwordField: PASSWORD
+  passwordValue: 1234
+  #loginAction: com.asiainfo.sec.web.action.impl.LoginAction
+  #locales:
+  #  zh_CN: "中文(中华人民共和国)"
+  #  en_US: "English(United States)"
+  widgets:
+    form:
+      #template: "com/asiainfo/sec/web/component/pc/widget/login/Form.html"
+      enabled: true
+
+
+touchframe.pc.main:
+  title: "青海移动 CRM"
+  useridField: OP_ID
+  usernameField: OP_NAME
+  userdeptField: ORG_NAME
+  widgets:
+    favorite:
+      enabled: true
+    reminder:
+      enabled: true
+    recommend:
+      enabled: true
+    faultflow:
+      enabled: true
+    screenshot:
+      enabled: true
+    tool:
+      enabled: true
+
+touchframe.pc.home:
+  widgets:
+    layout:
+      enabled: true
+    banner:
+      enabled: true
+    tab-home:
+      enabled: false
+    tab-fullmenu:
+      enabled: true
+
+touchframe.menu:
+  groups: [
+  {
+    name: "订单中心",
+    subgroups: [
+    {
+      name: "首 页",
+      items:[
+      {name: "首页", url: "?service=page/order.page.pc.frame.Home&listener=onInitBusi"},
+      ]
+    },
+    {
+      name: "商品订购",
+      items:[
+      {name: "商品订购", url: "?service=page/order.page.pc.offerorder.Order"},
+      {name: "产品选择列表组件测试页面", url: "?service=page/order.page.biz.person.terminal.testpage&listener=onInitBusi&&EPARCHY_CODE=0731&TRADE_TYPE_CODE=110&AFTER_ACTION=alert(1)"},
+      {name: "元素选择列表组件测试页面", url: "?service=page/order.page.biz.person.terminal.testpage&listener=onInitBusi&&EPARCHY_CODE=0731&TRADE_TYPE_CODE=110&AFTER_ACTION=alert(1)"},
+      {name: "多用户列表选择组件", url: "?service=page/components.auth.UserList&listener=queryUserList"},
+      {name: "用户资料变更", url: "?service=page/order.page.pc.person.modifyuserinfo.ModifyUserInfo"},
+      {name: "新业务推荐受理", url: "?service=page/order.page.pc.person.speservice.newsvcrecomdinfo.NewSvcRecomdInfo"},
+      {name: "携出方产品套餐查询", url: "?service=page/order.page.pc.person.sundryquery.np.QueryNetnpProductInfo"},
+      {name: "携号失败原因", url: "?service=page/order.page.pc.person.sundryquery.np.QueryUserNetnpErrorMsg"},
+      {name: "改号业务预申请登记", url: "?service=page/order.page.pc.person.changephone.ChangePhonePreRegister"},
+      {name: "改号关联取消", url: "?service=page/order.page.pc.person.changephone.ChangePhoneCancel"},
+      {name: "改号关联查询", url: "?service=page/order.page.pc.person.changephone.ChangePhoneInfoQry"},
+      {name: "改号预登记查询", url: "?service=page/order.page.pc.person.changephone.ChangePhonePreInfoQry"},
+      {name: "携号申请撤销", url: "?service=page/order.page.pc.person.np.cancelnpapply.InNpApplyCancel"},
+      ]
+    },
+    {
+      name: "营销活动",
+      items:[
+      {name: "营销活动(存送营销)", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&SALE_ACTIVE_TYPE=S0001"},
+      {name: "终端受理(主题营销)", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&SALE_ACTIVE_TYPE=S0002"},
+      {name: "终端受理(社会渠道)", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&SALE_ACTIVE_TYPE=S0003"},
+      {name: "终端受理(自有渠道)", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&SALE_ACTIVE_TYPE=S0004"},
+      {name: "铁通宽带营销活动", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&SALE_ACTIVE_TYPE=S0005"},
+      {name: "异网营销活动受理", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&SALE_ACTIVE_TYPE=S0006"},
+      {name: "营销活动综合查询", url: "?service=page/order.page.pc.saleActive.qry.QrySaleActive&listener=onInitBusi"},
+      {name: "营销活动受理校验", url: "?service=page/order.page.pc.saleActive.accept.SaleActiveAccept&listener=onInitBusi&PRE_TYPE=1"},
+      {name: "营销活动赠送金额查询", url: "?service=page/order.page.pc.saleActive.qry.SaleActiveGiftFeeQry&listener=onInitBusi"}
+      ]
+    },
+    {name: "界面UI展示",
+     items:[
+     {name: "预约产品变更取消", url: "?service=page/order.page.pc.cancelChangeProduct.CancelChangeProduct&listener=onInitTrade"},
+     {name: "特殊优惠取消", url: "?service=page/order.page.pc.changediscnt.ChangeDiscnt"},
+     {name: "流量卡充值", url: "?service=page/order.page.pc.valuecardmgr.ActiveFlowCard&listener=onInitTrade"},
+     {name: "个人流量零售", url: "?service=page/order.page.pc.flow.FlowSale&listener=onInitTrade"},
+     {name: "杭研家庭标准化产品库", url: "?service=page/order.page.pc.compproduct.AccessProductLibrary&listener=initial"},
+     {name: "小区优惠配置", url: "?service=page/order.page.pc.other.QueryAddrInfo&listener=onInitTrade"},
+     {name: "国漫数据流量定向套餐业务", url: "?service=page/order.page.pc.interroam.InterRoamDirectedTrade"},
+     {name: "国漫优选", url: "?service=page/order.page.pc.multisnonecard.ChooseNetwork"},
+     ]
+    },
+    {
+      name: "合约计划",
+      items:[
+      {name: "合约计划综合受理", url: "?service=page/order.page.pc.person.contractplan.ContractPlan&listener=onInitTrade"}
+      ]
+    },
+    {
+      name: "融合业务",
+      items:[
+      {name: "融合业务受理", url: "?service=page/order.page.pc.person.FusionBusinessAccept&listener=onInitBusi"},
+      {name: "融合业务变更", url: "?service=page/order.page.pc.person.FusionBusinessChange&listener=onInitBusi"},
+      {name: "融合用户资料查询", url: "?service=page/order.page.pc.person.FusionQuery"},
+      {name: "融合成员管理", url: "?service=page/order.page.pc.person.FusionBusinessChangeMember&listener=onInitBusi"},
+      ]
+    },
+    {
+        name: "补换卡",
+        items:[
+        {name: "补卡(写卡)", url: "?service=page/order.page.pc.person.changesimcard.ChangeSimCard&listener=onInitBusi"},
+        {name: "换卡(写卡)", url: "?service=page/order.page.pc.person.changesimcard.RemoteCard&listener=onInitBusi"},
+        {name: "补换eSIM设备", url: "?service=page/order.page.pc.person.simcardmgr.RemoteCardESim"}
+        ]
+    },
+    {
+        name: "换机",
+        items:[
+        {name: "换机", url: "?service=page/order.page.pc.person.exchangemphone.ExchangeMphone&listener=onInitBusi"}
+        ]
+    },
+    {
+        name: "一卡多号",
+        items:[
+        {name: "一卡多号查询", url: "?service=page/order.page.pc.person.onecardmultino.OneCardMultiNo"},
+        {name: "一卡多号取消", url: "?service=page/order.page.pc.person.onecardmultino.OneCardMultiCancel"},
+        {name: "一卡多号副卡", url: "?service=page/order.page.pc.person.onecardmultino.OneCardMultiNoApply"},
+        ]
+    },
+   {
+           name: "有价卡",
+           items:[
+           {name: "有价卡销售", url: "?service=page/order.page.pc.person.valuecard.SellValueCard"},
+           {name: "体验卡销售", url: "?service=page/order.page.pc.person.valuecard.SellEnjoyCard"},
+           {name: "有价卡赠送", url: "?service=page/order.page.pc.person.valuecard.GiveValueCard"},
+           {name: "流量卡销售", url: "?service=page/order.page.pc.person.valuecardmgr.SellFlowCard"},
+           {name: "流量卡赠送", url: "?service=page/order.page.pc.person.valuecard.GiveFlowCard"},
+           ]
+       },
+       {
+               name: "单号卡业务",
+               items:[
+               {name: "异地写卡(一卡多号)", url: "?service=page/order.page.pc.person.remotewritecard.RemoteWriteCard"},
+               {name: "单卡号异地补换卡", url: "?service=page/order.page.pc.person.remotewritecard.RemoteWriteCardSingle"},
+               ]
+           },
+        {
+           name: "串码信息",
+           items:[
+           {name: "串码信息录入", url: "?service=page/order.page.pc.person.codechange.CodeChangeImport"}
+           ]
+        },
+    {
+      name: "开户业务",
+      items:[
+      {name: "个人业务开户", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=1&SHOW_TYPE=A"},
+      {name: "营销活动开户", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=1&SHOW_TYPE=A&LABEL_FLAG=TRUE&LABEL_ID=0"},
+      {name: "代理商实名制个人开户", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=AGENT&IS_REAL=1&SHOW_TYPE=C&KH_DLS=1"},
+      {name: "个人用户(预开户)", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=1&TAG=1&SHOW_TYPE=B"},
+      {name: "个人用户(测试卡)", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=1&SHOW_TYPE=D"},
+      {name: "物联网开户", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=0&M2MFLAG=1&SHOW_TYPE=F"},
+      {name: "物联网开户行车卫士", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=10&OPEN_TYPE=0&M2MFLAG=1&SHOW_XCWS=1"},
+      {name: "个人用户异网开户", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&AUTH_TYPE=00&TRADE_TYPE_CODE=1018&OPEN_TYPE=1&remoteCardFlag=0&TDHomeOpen=0&YW_FLAG=1"},
+      {name: "和校园虚拟号码开户", url: "?service=page/order.page.pc.person.createuser.CreateUser&listener=onInitTrade&remoteCardFlag=0&TDHomeOpen=0&reUseCard=0&TRADE_TYPE_CODE=19&OPEN_TYPE=1&IS_VIRTUAL=1"},
+
+      {name: "测试页面", url: "?service=page/order.page.pc.person.destroyuser.DestroyUser&listener=onInitBusi"},
+      {name: "大屏幕选号", url: "?service=page/order.page.pc.person.mphonefreeopen.MphoneFreeOpen&listener=onInitTrade"},
+      ]
+    },
+    {
+      name: "返销业务",
+      items:[
+      {name: "返销业务", url: "?service=page/order.page.pc.person.canceltrade.CancelTrade&listener=onInitTrade"},
+      {name: "返销申请", url: "?service=page/order.page.pc.person.canceltrade.CancelTradeApply&listener=onInitTrade"},
+      {name: "业务返销审核", url: "?service=page/order.page.pc.person.canceltrade.CancelTradeAudit"},
+      ]
+    },
+    {
+      name: "产品变更",
+      items:[
+      {name: "个人产品变更", url: "?service=page/order.page.pc.person.changeproduct.ChangeProduct&listener=init"},
+      ]
+    },
+    {
+      name: "批量业务",
+      items:[
+      {name: "批量任务创建", url: "?service=page/order.page.pc.person.bat.battaskcreate.BatTaskCreate&listener=initBatDealInput"},
+      {name: "批量任务查询", url: "?service=page/order.page.pc.person.bat.battaskquery.BatTaskQuery&listener=onInitTrade"},
+      {name: "批量任务启动", url: "?service=page/order.page.pc.person.bat.battaskstart.BatTaskStart"},
+      {name: "批量数据导入", url: "?service=page/order.page.pc.person.bat.batdataimport.BatDataImport&listener=iPInit"},
+      {name: "批量结果查询", url: "?service=page/order.page.pc.person.bat.batbatchquery.BatBatchQuery"},
+      ]
+    },
+    {
+      name: "普通付费关系变更",
+      items:[
+      {name: "普通付费关系变更", url: "?service=page/order.page.pc.person.paidchange.PaidChange&listener=onInitBusi"},
+      {name: "4G服务申请开通 ", url: "?service=page/order.page.pc.person.changeproduct.AddLteCheck"},
+      {name: "营销串码信息 ", url: "?service=page/order.page.pc.person.saleactiveterminfo.SaleTermInfo"},
+      {name: "受理单注销", url: "?service=page/order.page.pc.person.ttfusiontelephone.TradeCancel"},
+      {name: "安全密钥上行更新", url: "?service=page/order.page.pc.person.evaluecard.UpRsaPublicKey"}
+      ]
+    },
+
+    {
+      name: "其他业务",
+      items:[
+      {name: "亲情用户资料查询", url: "?service=page/order.page.pc.person.familyquery.qhai.FamilyQuery&listener=init"},
+      {name: "SIM卡资料查询", url: "?service=page/order.page.pc.person.simcardmgr.SimCardQuery&listener=init"},
+      {name: "未完订单查询", url: "?service=page/order.page.pc.person.queryunfinishtrade.QueryUnfinishTrade&listener=init"},
+      {name: "宽带拆机用户查询", url: "?service=page/order.page.pc.person.widenetdemolishinquire.WideNetDemolishInquire&listener=onInitTrade"},
+      {name: "宽带工单查询", url: "?service=page/order.page.pc.person.querywideorderinfo.QueryWideOrderInfo"},
+      {name: "押金业务", url: "?service=page/ForeGit&listener=onInitTrade"},
+      {name: "未反馈二次确认短信工单查询", url: "?service=page/order.page.pc.person.schooltrade.XxtUnconfirmQry"},
+      {name: "账户交易查询", url: "?service=page/order.page.pc.person.mobilepayment.AccountTransactionQuery"},
+      {name: "一级不良信息举报处理", url: "?service=page/order.page.pc.person.badness.BadnessImpeachManage"},
+      {name: "一级不良信息举报受理 ", url: "?service=page/order.page.pc.person.badness.DedInfoComplainDeal"},
+      ]
+    },
+    {
+      name: "销户业务",
+      items:[
+      {name: "复机（远程写卡）", url: "?service=page/order.page.pc.person.restoreuser.RestoreUserRemote&listener=onInitBusi"},
+      {name: "销户", url: "?service=page/order.page.pc.person.destroyuser.DestroyUser&listener=onInitBusi"},
+      {name: "预约销户", url: "?service=page/order.page.pc.person.destroyuser.PreDestroyUser&listener=onInitBusi"},
+      {name: "用户资料模糊查询", url: "?service=page/order.page.pc.person.userinfo.QuerySnByUsrpid&listener=onInitBusi"},
+      {name: "统一认证", url: "?service=page/order.page.pc.person.commonauth.AuthView&listener=onInitBusi"},
+      {name: "电子券业务订单受理", url: "?service=page/order.page.pc.person.saleactive.EcouponTrade&listener=onInitBusi"},
+      {name: "销户取消", url: "?service=page/order.page.pc.person.restoreuser.RestoreUser&listener=onInitBusi"},
+      {name: "订单状态更新", url: "?service=page/order.page.pc.person.bandfeedback.BandFeedBack"},
+      {name: "小区信息录入", url: "?service=page/order.page.pc.person.widenetusercreate.VillageInfoEnter"},
+      ]
+    },
+    {
+      name: "过户业务",
+      items:[
+      {name: "个人业务过户", url: "?service=page/order.page.pc.person.changecustowner.ChangeCustOwner&listener=onInitTrade&TRADE_TYPE_CODE=100&SHOW_TYPE=A"},
+      {name: "实名认证过户", url: "?service=page/order.page.pc.person.changecustowner.ChangeCustOwner&listener=onInitTrade&TRADE_TYPE_CODE=100&SHOW_TYPE=A&IS_REAL_NAME=1"}
+      ]
+    },
+    {
+      name: "分户/合户",
+      items:[
+      {name: "分户/合户", url: "?service=page/order.page.pc.person.changepayrelation.PayRelaNorChg&listener=onInitTrade&TRADE_TYPE_CODE=100"}
+      ]
+    },
+    {
+      name: "资料变更",
+      items:[
+      {name: "邮寄资料变更", url: "?service=page/order.page.pc.person.changepostinfo.ModifyPostInfo&listener=onInitTrade&TRADE_TYPE_CODE=90"},
+      {name: "宽带账户资料变更", url: "?service=page/order.page.pc.changeinfo.changeacctinfo.ModifyAcctInfo&listener=init&TRADE_TYPE_CODE=80&AUTH_TYPE=04"},
+      ]
+    },
+    {
+      name: "局方停开机",
+      items:[
+      {name: "局方停开机", url: "?service=page/order.page.pc.person.officestopstart.OfficeStopStart&listener=onInitBusi"}
+      ]
+    },
+    {
+      name: "停开机类",
+      items:[
+      {name: "停开机综合页面", url: "?service=page/order.person.changesvcstate.StopStart&listener=onInitBusi"},
+      {name: "个人业务停开机", url: "?service=page/order.page.pc.person.stopstart.StopStart&listener=onInitBusi"},
+      {name: "骚扰电话特殊开机", url: "?service=page/person.changesvcstate.specialopen&listener=onInitBusi"},
+      {name: "骚扰电话特殊停机", url: "?service=page/order.person.changesvcstate.specialstop&listener=onInitBusi"},
+      {name: "强制停机（局方停机）", url: "?service=page/order.person.changesvcstate.officestopmobile&listener=onInitBusi"},
+      {name: "挂失停机", url: "?service=page/order.person.changesvcstate.openstoplosemobile&listener=onInitBusi"},
+      {name: "GPRS开机", url: "?service=page/order.page.pc.person.reopengprs.ReopenGPRS&listener=onInitBusi&authType=00&TRADE_TYPE_CODE=130"},
+      {name: "强制开机", url: "?service=page/order.page.pc.person.officestopstart.OfficeStopStart&listener=onInitBusi&authType=00&TRADE_TYPE_CODE=126"},
+      {name: "申请开机", url: "?service=page/order.page.pc.person.stopstart.StopStart&listener=onInitBusi&authType=00&TRADE_TYPE_CODE=133"},
+      ]
+    },
+    {
+      name: "特殊业务",
+      items:[
+      {name: "电子发票推送信息设置", url: "?service=page/order.page.pc.person.renttrade.ModifyEPostInfo&listener=onInitBusi"},
+      {name: "宽带电子发票推送信息设置", url: "?service=page/order.page.pc.person.renttrade.ModifyEPostInfo&&listener=onInitBusi&AUTH_TYPE=04"},
+      {name: "电子券查询", url: "?service=page/order.page.pc.queryepaper.QueryEPaper"}
+
+      ]
+    },
+    {
+      name: "动态信控服务管理",
+      items:[
+      {name: "紧急开机", url: "?service=page/order.page.pc.person.emergencyopen.EmergencyOpen&listener=onInitBusi&authType=00&TRADE_TYPE_CODE=497"},
+      {name: "担保开机", url: "?service=page/order.page.pc.person.guaranteeopen.GuaranteeOpen&listener=onInitBusi&authType=00&TRADE_TYPE_CODE=496"},
+      ]
+    },
+    {
+      name: "个人业务接口",
+      items:[
+      {name: "跨区入网服务", url: "?service=page/order.page.pc.person.crossregservice.CrossRegService&listener=onInitBusi"},
+      ]
+    },
+    {
+      name: "平台业务",
+      items:[
+      {name: "平台业务", url: "?service=page/order.page.pc.person.plat.PlatOrder&listener=init"},
+      {name: "和校园业务受理", url: "?service=page/order.page.pc.person.schooltrade.SchoolMessageOpen"},
+      {name: "物联网测试期变更", url: "?service=page/order.page.pc.person.internetofthings.ChgTestPeriod"},
+      {name: "电子券支付返销", url: "?service=page/order.page.pc.person.cancelepay.CancelEpay"},
+      {name: "电子卡销售", url: "?service=page/order.page.pc.person.evaluecard.SellEValueCard"},
+      {name: "电子卡信息查询", url: "?service=page/order.page.pc.person.evaluecard.QueryEValueCardInfo"},
+      {name: "电子卡锁定、解锁、延期", url: "?service=page/order.page.pc.person.evaluecard.LockOrUnlockEValueCard"},
+      {name: "电子卡销售返销", url: "?service=page/order.page.pc.person.evaluecard.CancelSaledEValueCard"},
+      {name: "电子有价卡批量销售", url: "?service=page/order.page.pc.person.evaluecard.BatchSellEValueCard"},
+      {name: "手机支付业务开户", url: "?service=page/order.page.pc.person.mobilepayment.AccountOpen"},
+      ]
+    },
+    {
+      name: "一级BOSS管理",
+      items:[
+      {name: "异地开机", url: "?service=page/order.page.pc.person.interboss.OpenMobile&listener=onInitBusi"},
+      {name: "异地停机", url: "?service=page/order.page.pc.person.interboss.StopMobile&listener=onInitBusi"},
+      ]
+    },
+    {
+      name: "物联网业务",
+      items:[
+      {name: "物联网服务恢复", url: "?service=page/person.internetofthings.ResumeService&listener=onInitBusi"},
+      {name: "物联网服务暂停", url: "?service=page/person.internetofthings.SuspendService&listener=onInitBusi"},
+      ]
+    },
+    {
+      name: "宽带业务",
+      items:[
+      {name: "宽带开户撤单", url: "?service=page/order.page.pc.broadband.widenettradecancel.WideNetTradeCancel&listener=onInitBusi"},
+      {name: "宽带一单清", url: "?service=page/order.page.pc.broadband.FusionAccountOpening"},
+      {name: "测试页面", url: "?service=page/components.product.ProductList&listener=initPage"},
+      {name: "宽带移机", url: "?service=page/order.page.pc.broadbandmove.BroadBandMove"},
+      {name: "宽带拆机", url: "?service=page/order.page.pc.broadbanddemolish.BroadBandDemolish"},
+      {name: "宽带移机_青海", url: "?service=page/order.page.pc.widenetmove.WideNetMove"},
+      {name: "宽带拆机_青海", url: "?service=page/order.page.pc.widenetdemolish.WideNetDemolish"},
+      {name: "固话开宽带", url: "?service=page/order.page.pc.broadband.widenetusercreate.WideNetUserCreate&listener=onInitTrade&CATALOG_ID=KD002"},
+      {name: "宽带移机撤单", url: "?service=page/order.page.pc.widenetmovecancel.WideNetMoveCancel"},
+      {name: "集团虚拟号码开宽带", url: "?service=page/order.page.pc.broadband.widenetusercreate.WideNetUserCreateGroup&listener=onInitTrade&CATALOG_ID=KD002"},
+      {name: "宽带申请开机", url: "?service=page/order.page.pc.openwidenet.OpenWideNet&listener=onInitBusi"},
+      {name: "宽带付费关系变更", url: "?service=page/order.page.pc.broadband.BroadbandPaymentchange&listener=onInitBusi"},
+      {name: "宽带改号", url: "?service=page/order.page.pc.broadband.WideNetChangeNumber&listener=onInitBusi"},
+      {name: "宽带过户", url: "?service=page/ChangeKDCustOwner&listener=onInitBusi&TRADE_TYPE_CODE=535&SHOW_TYPE=A&IS_REAL_NAME=1"},
+      {name: "宽带设备回收", url: "?service=page/order.page.pc.broadband.RecoverDevice&listener=onInitBusi"},
+      {name: "宽带申请停机", url: "?service=page/person.stopwidenet.StopWideNet&listener=onInitTrade"},
+      {name: "装机派单", url: "?service=page/order.page.pc.broadband.constructtradedispatch.ConstructTradeDispatch"},
+      {name: "客户接触信息维护日志查询", url: "?service=page/order.page.pc.person.querycontactlog.QueryContactLog&listener=onInitBusi"},
+      {name: "宽带密码变更", url: "?service=page/order.page.pc.broadband.WideNetPswModify&listener=onInitTrade&authType=04"},
+      {name: "宽带综合信息查询", url: "?service=page/order.page.pc.broadband.QueryWideNetInfo"},
+      ]
+    },
+    {
+      name: "铁通融合-固话",
+      items:[
+      {name: "铁通固话开户", url: "?service=page/order.page.pc.ttfusiontelephone.tphoneusercreate.TPhoneUserCreate&listener=onInitBusi&SHOW_TYPE=H"},
+      {name: "铁通固话拆机", url: "?service=page/order.page.pc.ttfusiontelephone.tphonedemolish.TPhoneDemolish&listener=onInitBusi"},
+      {name: "铁通固话停机", url: "?service=page/order.page.pc.ttfusiontelephone.changesvcstate.StopPhone&listener=onInitBusi"},
+      {name: "铁通固话报开", url: "?service=page/order.page.pc.ttfusiontelephone.changesvcstate.OpenFixedUser&listener=onInitBusi"},
+      {name: "铁通固话过户", url: "?service=page/order.page.pc.ttfusiontelephone.phonechangecustowner.PhoneChangeCustOwner"},
+      {name: "铁通固话分户/合户", url: "?service=page/order.page.pc.person.changepayrelation.PayRelaNorChg&listener=init&NET_TYPE_CODE_MODIFY=12"},
+      {name: "铁通固话复装", url: "?service=page/order.page.pc.ttfusiontelephone.tphonerestorefixed.TPhoneRestoreFixed&listener=onInitBusi"},
+      {name: "铁通固话户类变更", url: "?service=page/order.page.pc.ttfusiontelephone.changefixedproperty.ChangeFixedProperty"},
+      {name: "铁通固话移机", url: "?service=page/order.page.pc.ttfusiontelephone.tphonemove.TPhoneMove&listener=onInitBusi"},
+      {name: "铁通固话同账户查询", url: "?service=page/order.page.pc.ttfusiontelephone.QuerySameAct"},
+      {name: "固话开户信息变更", url: "?service=page/order.page.pc.acceptorderchange.AcceptOrderChange"},
+      {name: "固话产品变更", url: "?service=page/order.page.pc.ttfusiontelephone.TPhoneChangeProduct&listener=onInitTrade"},
+      ]
+
+    },
+    {
+      name: "客户信息编辑",
+      items:[
+      {name: "客户信息编辑组件测试页面", url: "?service=page/order.page.pc.editcustinfo.EditCustInfo"}
+      ]
+    },
+    {
+      name: "担保人组件",
+      items:[
+      {name: "担保人组件", url: "?service=page/order.page.pc.editassureinfo.TestAssureInfo"}
+      ]
+    },
+    {
+      name: "三户资料展示",
+      items:[
+      {name: "三户资料展示组件测试页面", url: "?service=page/order.page.pc.ucainfoview.UcaInfoViewTest"},
+      ]
+    },
+    {
+      name: "实名认证",
+      items:[
+      {name: "实名认证组件测试页面", url: "?service=page/order.page.pc.realName.RealNameView"},
+      {name: "实名制补登记", url: "?service=page/order.page.pc.realNameReg.RealNameReg&listener=onInit"},
+      {name: "证件号码预占解除", url: "?service=page/order.page.pc.oneIdCardManyNums.ReleaseCertificateNum"},
+      ]
+    },
+
+    {
+      name: "共享业务",
+      items:[
+      {name: "共享类业务", url: "?service=page/order.page.pc.tariffshare.tariffShare"}
+      ]
+    },
+    {
+      name: "积分业务",
+      items:[
+      {name: "统一积分兑换", url: "?service=page/order.page.pc.scoreConvert.scoreConvert"},
+      {name: "积分兑换混合支付发票打印", url: "?service=page/order.page.pc.scoreprint.ScorePrint"},
+      {name: "积分兑换", url: "?service=page/order.page.pc.scoreexchange.ScoreExchange"},
+      {name: "积分兑换购物券", url: "?service=page/order.page.pc.creditexchange.CreditExchange"},
+      {name: "积分兑换明细查询", url: "?service=page/order.page.pc.usertradescore.UserTradeScore"},
+      {name: "积分抽奖", url: "?service=page/order.page.pc.scoreraffle.ScoreRaffle"},
+      {name: "积分计划订购", url: "?service=page/order.page.pc.integralplanadd.IntegralPlanAdd"},
+      {name: "积分兑换（自有业务）", url: "?service=page/order.page.pc.saleactivescore.SaleActiveScore"}
+      ]
+    },
+    {
+      name: "IMS业务",
+      items:[
+      {name: "IMS开户", url: "?service=page/order.page.pc.createimsuser.CreateImsUser"},
+      {name: "IMS拆机", url: "?service=page/order.page.pc.imsnetdemolish.ImsNetDemolish"},
+      {name: "IMS开户撤单", url: "?service=page/order.page.pc.imstradecancel.ImsTradeCancel"}
+      ]
+    },
+    {
+      name: "多终端业务",
+      items:[
+      {name: "多终端开副卡", url: "?service=page/order.page.pc.onenomultiterminal.CreateOneNoMultiTerminal"},
+      {name: "多终端业务暂停", url: "?service=page/order.page.pc.onenomultiterminal.OneNoMultiTerminalSuspend"},
+      {name: "多终端业务恢复", url: "?service=page/order.page.pc.onenomultiterminal.OneNoMultiTerminalResume"},
+      {name: "个人多终端共享", url: "?service=page/order.page.pc.sharemeal.NewShareMeal"},
+      ]
+    },
+    {
+      name: "家庭网业务",
+      items:[
+      {name: "家庭网业务（湖南）", url: "?service=page/order.page.pc.familynet.hnan.FamilyNet&listener=onInit"},
+      {name: "家庭网业务（青海）", url: "?service=page/order.page.pc.familynet.qhai.FamilyNet&listener=onInit"}
+      ]
+    },
+    {
+      name: "密码业务",
+      items:[
+      {name: "用户密码变更", url: "?service=page/order.page.pc.person.changepassword.ModifyUserPwdInfo&listener=onInitTrade&TRADE_TYPE_CODE=71"},
+      {name: "用户密码重置", url: "?service=page/order.page.pc.person.changepassword.ResetUserPasswordInfo&listener=onInitTrade&TRADE_TYPE_CODE=73"},
+      {name: "用户密码解锁", url: "?service=page/order.page.pc.person.changepassword.UnlockPwd"}
+      ]
+    },
+    {
+      name: "特殊业务类",
+      items:[
+      {name: "营业发票重打", url: "?service=page/order.page.pc.person.reprint.RePrint"},
+      {name: "导入不需要特殊处理的优质号码", url: "?service=page/order.page.pc.batspecresimport.BatSpecResImport&listener=init"}
+      ]
+    },
+    {
+      name: "查询类",
+      items:[
+      {name: "预约业务查询", url: "?service=page/order.page.pc.queryclass.QueryElecOrderTrade"},
+      {name: "新业务产品资料查询", url: "?service=page/order.page.pc.queryclass.QuerySpServiceTrade"},
+      {name: "电子发票历史查询", url: "?service=page/order.page.pc.queryclass.EInvoiceHistory"},
+      {name: "重入网/纯新增信息查询", url: "?service=page/order.page.pc.queryclass.QueryThisPrvNumberByPspt"},
+      {name: "交换机状态查询", url: "?service=page/order.page.pc.queryclass.QueryHIService"},
+      {name: "消费记录查询", url: "?service=page/order.page.pc.queryclass.QueryExpenseRecord"},
+      {name: "一键业务受理查询", url: "?service=page/order.page.pc.queryclass.FlowTradeConfig"},
+
+
+      {name: "月统计量查询", url: "?service=page/order.page.pc.queryclass.ordercountquerybymoneth.OrderCountQueryByMonth"},
+      {name: "一证多号信息查询", url: "?service=page/order.page.pc.person.querycustnumber.QueryCustNumber&listener=onInit"},
+      {name: "一证五号违规信息查询", url: "?service=page/order.page.pc.queryclass.QueryCustViolationNumber"},
+      {name: "预约历史查询", url: "?service=page/order.page.pc.queryclass.QueryHisElecOrderTrade"},
+      {name: "推荐用户查询", url: "?service=page/order.page.pc.queryclass.QueryUserRecommInfo.QueryUserRecommInfo"},
+      {name: "省内一证多号信息查询", url: "?service=page/order.page.pc.queryclass.QueryThisPrvNumber"},
+      {name: "完工订单查询", url: "?service=page/order.page.pc.queryclass.querytradeinfo.QueryFinishTrade"},
+      {name: "身份信息查询", url: "?service=page/order.page.pc.person.idinfo.QueryIDInfo&listener=onInit"},
+      {name: "账户信息查询", url: "?service=page/order.page.pc.person.mobilepayment.AccountInfoQuery"},
+      {name: "和多号副号码信息查询", url: "?service=page/order.page.pc.person.onecardmosp.OnecardmultiFuCardInfo"},
+      {name: "和多号副号码查询主号码", url: "?service=page/order.page.pc.person.onecardmosp.OnecardmultiFuCardQry"},
+      ]
+    },
+     {
+       name: "付费关系变更",
+       items:[
+       {name: "托收转现金（新版）", url: "?service=page/order.page.pc.changeinfo.changeacctinfo.ModifyAcctInfoCollectionToCash&listener=init&TRADE_TYPE_CODE=80&AUTH_TYPE=00"},
+       {name: "高级付费关系变更", url: "?service=page/person.modifypayrelation.PayrelaAdvChg&listener=onInitTrade&AUTH_TYPE=00"},
+       {name: "高级付费关系取消", url: "?service=page/person.modifypayrelation.PayrelaAdvCancel&listener=onInitTrade&AUTH_TYPE=00"},
+       {name: "高级付费关系查询", url: "?service=page/person.modifypayrelation.QueryAdvPayRelation&listener=onInitTrade&AUTH_TYPE=00"},
+       ]
+     },
+    {
+      name: "咪咕动漫",
+      items:[
+      {name: "消费记录查询", url: "?service=page/order.page.pc.phoneanime.QueryConsumeRecord"}
+      ]
+    },
+    {
+      name: "咪咕视屏",
+      items:[
+      {name: "消费记录查询", url: "?service=page/order.page.pc.cellphonevideo.QueryConsumeRecord"}
+      ]
+    },
+    {
+      name: "咪咕游戏",
+      items:[
+      {name: "手机游戏黑名单删除", url: "?service=page/order.page.pc.person.querygamerecord.DeleteBlack"},
+      {name: "手机游戏黑名单查询", url: "?service=page/order.page.pc.person.querygamerecord.QueryGameBlack"},
+      ]
+    },
+    {
+      name: "亲情业务受理",
+      items:[
+      {name: "亲情业务受理（湖南）", url: "?service=page/order.page.pc.familyaffection.hnan.FamilyAffection&listener=onInit"},
+      {name: "亲情业务受理（青海）", url: "?service=page/order.page.pc.familyaffection.qhai.FamilyAffection&listener=onInit"}
+      ]
+    },
+    {
+      name: "全国家庭网业务查询",
+      items:[
+      {name: "全国家庭网业务查询（湖南）", url: "?service=page/order.page.pc.familynationalquery.hnan.FamilyNationalQuery"},
+      {name: "全国家庭网业务查询（青海）", url: "?service=page/order.page.pc.familynationalquery.qhai.FamilyNationalQuery"}
+      ]
+    }
+    ]
+  },
+
+  {
+    name: "页面样例",
+    subgroups: [
+    {
+      name: "页面示例",
+      items: [
+      {name: "SEC组件示例", url: "?service=page/demo.orgTree"},
+      {name: "模板页面示例", url: "?service=page/demo.demoPage"},
+      {name: "组件页面示例", url: "?service=page/demo.compPage"}
+      ]
+    },
+    ]
+  },
+
+  {
+    name: "政企业务",
+    subgroups: [
+    {
+      name: "组件开发",
+      items: [
+      {name: "动态参数组件测试", url: "?service=page/order.page.pc.enterprise.EnterpriseTestPage"},
+      {name: "新增宽带信息列表组件测试", url: "?service=page/order.page.pc.enterprise.BroadbandListTestPage&listener=onInitBusi"},
+      {name: "变更宽带信息列表组件测试", url: "?service=page/order.page.pc.enterprise.BroadbandListChgTestPage&listener=onInitBusi"},
+      {name: "集团批量开户组件测试", url: "?service=page/order.page.pc.enterprise.EnterpriseComponentTestPage"}
+      ]
+    },
+    {
+      name: "业务页面",
+      items: [
+      {name: "集团产品受理", url: "?service=page/order.page.pc.enterprise.EnterpriseTestPage"},
+      {name: "政企一单清受理（青海）", url: "?service=page/order.page.pc.integration.CreateIntegration"},
+      {name: "集团商品受理", url: "?service=page/order.page.pc.enterprise.OperEnterpriseSubscriber"}
+      ]
+    },
+    {
+      name: "集团高级付费关系",
+      items: [
+      {name: "集团高级付费关系变更", url: "?service=page/order.page.pc.biz.enterprise.modifypayrelation.PayrelaAdvChg&listener=onInitBusi"},
+      {name: "集团高级付费关系取消", url: "?service=page/order.page.pc.biz.enterprise.modifypayrelation.PayrelaAdvCancel"}
+      ]
+    },
+    {
+      name: "查询类",
+      items: [
+      {name: "我的集团产品", url: "?service=page/order.page.pc.enterprise.MyGroupProductQuery&listener=initial"},
+      {name: "集团转网优惠信息", url: "?service=page/order.page.pc.biz.enterprise.querygroupinfo.BatChangeNetDiscntQuery&listener=initial"},
+      {name: "集团行业端口信息查询", url: "?service=page/order.page.pc.biz.enterprise.querygroupinfo.AdcMasProductQuery&listener=initial"}
+      ]
+    },
+    {
+      name: "集团用户业务办理短信",
+      items: [
+      {name: "集团用户业务办理短信通知下发", url: "?service=page/group.querygroupinfo.CustManBookSmsNotice"}
+      ]
+    }
+    ]
+  }
+  ]
