@@ -7,7 +7,7 @@
         <!ENTITY base-page  SYSTEM "base-page.application">
         ]>
 <application name="base" engine-class="com.wade.web.v5.tapestry.engine.BaseEngine">
-    <description>web-upc</description>
+    <description>web-base</description>
 
     <property name="org.apache.tapestry.disable-caching" value="true"/>
     <property name="org.apache.tapestry.enable-reset-service" value="true"/>
