@@ -2,6 +2,7 @@ package com.asiainfo.crm.base.api.param.service;
 
 
 import com.asiainfo.bits.core.data.param.StaticParamDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * 2020/2/29 12:57 下午
  * @author liaosheng
  */
+@Service
 public interface IStaticParamOpenService {
 
     /**

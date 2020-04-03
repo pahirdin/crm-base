@@ -21,7 +21,6 @@ public class WebApplication extends SpringBootServletInitializer {
      *  增加JVM参数 -Dorg.apache.tapestry.disable-caching=true 禁用tapestry缓存
      *  增加JVM参数 -javaagent:library/spring/springloaded-1.2.8.RELEASE.jar -noverify 启用springloaded-热加载
      *  也可以使用Idea的JRebel插件来做热加载，效果更好
-     * @param args
      */
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class, args);
