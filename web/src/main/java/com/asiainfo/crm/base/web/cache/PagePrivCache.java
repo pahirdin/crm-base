@@ -1,6 +1,5 @@
 package com.asiainfo.crm.base.web.cache;
 
-import com.ailk.cache.localcache.AbstractReadOnlyCache;
 import com.asiainfo.crm.base.web.privchecker.data.ParamMap;
 import com.asiainfo.crm.base.web.privchecker.data.ParamRightMap;
 import org.apache.commons.lang3.ObjectUtils;
@@ -9,11 +8,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class PagePrivCache extends AbstractReadOnlyCache {
+public class PagePrivCache  {
 
     private transient static final Logger log = LoggerFactory.getLogger(PagePrivCache.class);
 
-    @Override
+
     public Map<String, Object> loadData() throws Exception {
         Map<String, Object> ret = new HashMap<>();
 

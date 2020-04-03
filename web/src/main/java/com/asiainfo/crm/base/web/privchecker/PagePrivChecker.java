@@ -1,7 +1,5 @@
 package com.asiainfo.crm.base.web.privchecker;
 
-import com.ailk.cache.localcache.CacheFactory;
-import com.ailk.cache.localcache.interfaces.IReadOnlyCache;
 import com.ailk.web.view.VisitManager;
 import com.ailk.web.view.safe.IPrivChecker;
 import com.asiainfo.bits.web.framework.Visit;
@@ -45,6 +43,7 @@ public class PagePrivChecker implements IPrivChecker {
                 return true;
             }
 
+            /*
             IReadOnlyCache cache = null;
             try {
                 cache = CacheFactory.getReadOnlyCache(PagePrivCache.class);
@@ -53,12 +52,13 @@ public class PagePrivChecker implements IPrivChecker {
                 cache = null;
             }
 
+
             if (null == cache) {
                 return true;
             }
-
-			Map<String, Map<Map<String, String>, Set<String>>> pageParamRights = (Map<String, Map<Map<String, String>, Set<String>>>) cache.get("PAGE_PARAM_RIGHTS");
-			Map<String, Set<String>> pageRights  = (Map<String, Set<String>>) cache.get("PAGE_RIGHTS");
+*/
+			Map<String, Map<Map<String, String>, Set<String>>> pageParamRights = null; //(Map<String, Map<Map<String, String>, Set<String>>>) cache.get("PAGE_PARAM_RIGHTS");
+			Map<String, Set<String>> pageRights  =  null; //(Map<String, Set<String>>) cache.get("PAGE_RIGHTS");
 
 			if(pageParamRights != null){
 				Map<Map<String, String>, Set<String>> rights = pageParamRights.get(pageName);

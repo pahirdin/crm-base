@@ -1,6 +1,5 @@
 package com.asiainfo.crm.base.web.privchecker;
 
-import com.ailk.cache.localcache.interfaces.IReadOnlyCache;
 import com.ailk.web.view.VisitManager;
 import com.ailk.web.view.safe.IPrivChecker;
 import com.asiainfo.bits.web.framework.Visit;
@@ -41,11 +40,13 @@ public class HandlerPrivChecker implements IPrivChecker {
             if(null == method || "".equals(method))
                 return check;
 
+            /*
             IReadOnlyCache cache = null; //CacheFactory.getReadOnlyCache(AjaxPrivCache.class);
             if (null == cache) {
                 return true;
             }
             rightCode = (String) cache.get(className + "@" + methodName);
+            */
 
             if (null == rightCode || rightCode.length() <= 0)
                 return check;
